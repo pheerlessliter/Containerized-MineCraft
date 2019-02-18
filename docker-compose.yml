@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  minecraft:
+    image: ${MINECRAFT_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "2375:2375"
+    volumes:
+      - minecraft_data:/var/lib/minecraft/
+      - minecraft_configs:/etc/minecraft/
+
+volumes:
+  minecraft_data:
+  minecraft_configs:
