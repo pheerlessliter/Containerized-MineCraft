@@ -11,7 +11,7 @@ services:
     ports:
       - "2300:2300"
     volumes:
-      - minecraft_data:/var/lib/minecraft/world
+      - minecraft_data:/var/lib/minecraft
 
 volumes:
   minecraft_data:

@@ -33,6 +33,20 @@ echo "eula=true" > eula.txt
 cp server.tmpl server.properties
 /bin/sh setup.sh
 
-#exec ping localhost
+# This will check for ANY existing data in the world directory, if any data exists skip entirely.
+if [ "$(ls -A $LEVEL_NAME)" ]
+then
+    echo "$LEVEL_NAME directory is not empty. Importing a new world file will not continue"
+else
+    # Check if you have set the variable for a World backup to download and unpack.
+    if [ -z "$WORLD_FILE" ]
+    then
+        echo "$LEVEL_NAME backup file does not exist in the WORLD_FILE variable. Making new world."
+    else
+        wget $WORLD_FILE -O world.tar.gz
+        tar xzvf world.tar.gz
+        rm -rf world.tar.gz
+    fi
+fi
 
 exec $java_command
