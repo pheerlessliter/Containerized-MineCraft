@@ -34,9 +34,9 @@ cp server.tmpl server.properties
 /bin/sh setup.sh
 
 # This will check for the world directory, if it exists skip entirely. Don't risk data loss
-if [ ! -d $LEVEL_NAME ]
+if [ -d $LEVEL_NAME ]
 then
-    echo "$LEVEL_NAME directory is not empty. Importing a new world file will not continue"
+    echo "$LEVEL_NAME directory exists. Importing a new world file will not continue"
 else
     # Check if you have set the variable for a World backup to download and unpack.
     if [ -z "$WORLD_FILE" ]
