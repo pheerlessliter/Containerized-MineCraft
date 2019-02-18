@@ -1,0 +1,17 @@
+---
+version: '3'
+services:
+  minecraft:
+    image: ${MINECRAFT_IMAGE}
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    env_file:
+      - minecraft/server.env
+    ports:
+      - "2300:2300"
+    volumes:
+      - minecraft_data:/var/lib/minecraft
+
+volumes:
+  minecraft_data:
