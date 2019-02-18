@@ -6,7 +6,7 @@ APP_VERSION ?= $(shell cat version.txt)-$(shell git rev-parse --short HEAD)
 endif
 
 REGISTRY:=aws.amazon.com
-PNAME:=miaco
+PNAME:=comic
 
 MINECRAFT_IMAGE_NAME:=${REGISTRY}/${PNAME}/minecraft
 MINECRAFT_IMAGE:=${MINECRAFT_IMAGE_NAME}:${APP_VERSION}
