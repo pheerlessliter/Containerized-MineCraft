@@ -32,7 +32,7 @@ run:
 	MINECRAFT_IMAGE=${MINECRAFT_IMAGE} docker-compose -p ${PNAME} -f docker-compose.yml up -d
 
 stop:
-	MINECRAFT_IMAGE=${MINECRAFT_IMAGE} -p ${PNAME} -f docker-compose.yml stop 
+	MINECRAFT_IMAGE=${MINECRAFT_IMAGE} docker-compose -p ${PNAME} -f docker-compose.yml stop 
 
 clean:
 	-@docker rmi $$(docker images | grep ${PNAME}| awk '{ print $$3 }')

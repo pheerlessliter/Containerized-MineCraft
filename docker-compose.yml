@@ -4,12 +4,12 @@ services:
   minecraft:
     image: ${MINECRAFT_IMAGE}
     restart: unless-stopped
+    env_file:
+      - minecraft/server.env
     ports:
-      - "2375:2375"
+      - "2300:2300"
     volumes:
-      - minecraft_data:/var/lib/minecraft/
-      - minecraft_configs:/etc/minecraft/
+      - minecraft_data:/var/lib/minecraft/world
 
 volumes:
   minecraft_data:
-  minecraft_configs:
