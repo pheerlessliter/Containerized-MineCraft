@@ -5,7 +5,7 @@ else
 APP_VERSION ?= $(shell cat version.txt)-$(shell git rev-parse --short HEAD)
 endif
 
-REGISTRY:=aws.amazon.com
+REGISTRY:=url.to.your.docker.repo
 PNAME:=comic
 
 MINECRAFT_IMAGE_NAME:=${REGISTRY}/${PNAME}/minecraft
@@ -20,7 +20,7 @@ destroy:
 	MINECRAFT_IMAGE=${MINECRAFT_IMAGE} docker-compose -p ${PNAME} -f docker-compose.yml down -v
 
 push: build
-	docker push ${MINECRAFT_IMAGE}
+	docker push ${MINECRAFT_IMAGE_LATEST}
 
 # Only push latest if we are doing a release
 ifdef IS_RELEASE
