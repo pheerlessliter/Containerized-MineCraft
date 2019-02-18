@@ -4,6 +4,8 @@ services:
   minecraft:
     image: ${MINECRAFT_IMAGE}
     restart: unless-stopped
+    stdin_open: true
+    tty: true
     env_file:
       - minecraft/server.env
     ports:

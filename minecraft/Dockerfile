@@ -9,4 +9,4 @@ COPY start.sh /usr/local/bin/minecraft
 COPY server.tmpl /var/lib/minecraft/server.tmpl
 COPY setup.sh /var/lib/minecraft/setup.sh
 
-CMD minecraft
+CMD exec minecraft

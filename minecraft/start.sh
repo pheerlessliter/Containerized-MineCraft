@@ -12,6 +12,9 @@ latest_version=$(curl -s $minecraft_manifest | jq --raw-output .latest.release)
 latest_url=$(curl -s $minecraft_manifest | jq --raw-output ".versions[] | select(.id == \"$latest_version\") | .url")
 latest_server_url=$(curl -s $latest_url | jq --raw-output .downloads.server.url)
 
+# The command used to start minecraft
+java_command="java $JAVA_COMMAND_ARGS -jar minecraft_server.$latest_version.jar nogui"
+
 pushd $install_directory
 
 # Regardless of version, if the latest isn't available, download it.
@@ -20,13 +23,6 @@ then
     rm -rf minecraft_server.*
     wget $latest_server_url -O minecraft_server.$latest_version.jar
 fi
-
-# If the EULA file doesn't exist, then the server hasn't been run yet. Do the initial setup.
-#if [ ! -f eula.txt ]
-#then
-#    java $JAVA_COMMAND_ARGS -jar minecraft_server.$latest_version.jar nogui
-#    sed -i s/eula=false/eula=true/ eula.txt
-#fi
 
 # If the eula file exists or not, lets go ahead and set it to accepted.
 # You are still required to read the EULA before running the server, so using this is an agreement that you have and do accept it.
@@ -37,6 +33,6 @@ echo "eula=true" > eula.txt
 cp server.tmpl server.properties
 /bin/sh setup.sh
 
-ping localhost
+#exec ping localhost
 
-java $JAVA_COMMAND_ARGS -jar minecraft_server.$latest_version.jar nogui
+exec $java_command
