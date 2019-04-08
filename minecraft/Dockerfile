@@ -1,4 +1,4 @@
-FROM openjdk:latest
+FROM openjdk:11.0.1-jdk
 LABEL maintainer="Dubie <pheerlessliter@gmail.com>"
 
 RUN apt-get -y update
